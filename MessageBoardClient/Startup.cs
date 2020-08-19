@@ -49,6 +49,9 @@ namespace MessageBoardClient
                 app.UseHsts();
             }
 
+            app.UseStaticFiles();
+            app.UseAuthentication();
+            app.UseDeveloperExceptionPage();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
