@@ -7,15 +7,15 @@ namespace MessageBoardClient.Models
   {
     public static async Task<<string>> GetAll(string requestAddress)
     {
-      RestClient client = new RestClient("http://localhost:5000/api");
+      RestClient client = new RestClient("http://localhost:5000/api/");
       RestRequest request = new RestRequest($"{requestAddress}", Method.GET);
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
     }
 
-    public static async Task<string> GetDetails(string requestAddress)
+    public static async Task<string> Get(string requestAddress)
     {
-      RestClient client = new RestClient("Http://localhost:5000/api");
+      RestClient client = new RestClient("Http://localhost:5000/api/");
       RestRequest request = new RestRequest($"{requestAddress}", Method.GET);
 
       var response = await client.ExecuteTaskAsync(request);

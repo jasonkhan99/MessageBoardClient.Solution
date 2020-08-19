@@ -30,7 +30,8 @@ namespace MessageBoardClient.Models
 
     public static Board GetDetails(int id)
     {
-      var apiCallTask = ApiHelper.Get(id);
+      string requestAddress = $"Boards/{id}";
+      var apiCallTask = ApiHelper.Get(requestAddress);
       var result = apiCallTask.Result;
 
       JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);

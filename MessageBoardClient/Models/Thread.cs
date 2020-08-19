@@ -32,9 +32,10 @@ namespace MessageBoardClient.Models
       return threadList;
     }
 
-    public static Thread GetDetails(int id)
+    public static Thread GetDetails(int threadId)
     {
-      var apiCallTask = ApiHelper.Get(id);
+      string requestAddress = $"Threads/{threadId}";
+      var apiCallTask = ApiHelper.Get(requestAddress);
       var result = apiCallTask.Result;
 
       JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);

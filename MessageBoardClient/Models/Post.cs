@@ -29,7 +29,8 @@ namespace MessageBoardClient.Models
 
     public static Post GetDetails(int id)
     {
-      var apiCallTask = ApiHelper.Get(id);
+      string requestAddress = $"Posts/{id}";
+      var apiCallTask = ApiHelper.Get(requestAddress);
       var result = apiCallTask.Result;
 
       JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
