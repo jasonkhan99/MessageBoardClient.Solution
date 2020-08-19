@@ -41,20 +41,22 @@ namespace MessageBoardClient.Models
 
     public static void Post(Board board)
     {
+      string requestAddress = $"Boards";
       string jsonBoard = JsonConvert.SerializeObject(board);
-      var apiCallTask = ApiHelper.Post(jsonBoard);
+      var apiCallTask = ApiHelper.Post(requestAddress, jsonBoard);
     }
 
     public static void Put(Board board)
     {
-      string requestAddress = ""
+      string requestAddress = $"Boards/{board.BoardId}";
       string jsonBoard = jsonConvert.SerializeObject(board);
-      var apiCallTask = ApiHelper.Put(board.BoardId, jsonboard);
+      var apiCallTask = ApiHelper.Put(requestAddress, jsonboard);
     }
 
     public static void Delete(int id)
     {
-      var apiCallTask = ApiHelper.Delete(id);
+      string requestAddress = $"Boards/{id}";
+      var apiCallTask = ApiHelper.Delete(requestAddress);
     }
 
     public static List<Thread> GetThreads(int boardId)
@@ -71,14 +73,16 @@ namespace MessageBoardClient.Models
     
     public static void PutThread(Thread thread)
     {
+      string requestAddress = $"Boards/{thread.ParentBoardId}/threads/{thread.ThreadId}";
       string jsonThread = jsonConvert.SerializeObject(thread);
-      var apiCallTask = ApiHelper.Put(thread.ThreadId, jsonthread);
+      var apiCallTask = ApiHelper.Put(requestAddress, jsonthread);
     }
     
     public static void PostThread(Thread thread)
     {
+      string requestAddress = $"Boards/{thread.ParentBoardId}/threads";
       string jsonThread = jsonConvert.SerializeObject(thread);
-      var apiCallTask = ApiHelper.Post(thread.ThreadId, jsonthread);
+      var apiCallTask = ApiHelper.Post(requestAddress, jsonthread);
     }
   }
 }
