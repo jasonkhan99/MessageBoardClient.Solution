@@ -41,19 +41,22 @@ namespace MessageBoardClient.Models
 
     public static void Post(User user)
     {
+      string requestAddress = $"Users";
       string jsonUser = JsonConvert.SerializeObject(user);
-      var apiCallTask = ApiHelper.Post(jsonUser);
+      var apiCallTask = ApiHelper.Post(requestAddress, jsonUser);
     }
 
     public static void Put(User user)
     {
+      string requestAddress = $"Users/{id}";
       string jsonUser = jsonConvert.SerializeObject(user);
-      var apiCallTask = ApiHelper.Put(user.UserId, jsonUser);
+      var apiCallTask = ApiHelper.Put(requestAddress, jsonUser);
     }
 
     public static void Delete(int id)
     {
-      var apiCallTask = ApiHelper.Delete(id);
+      string requestAddress = $"Users/{id}";
+      var apiCallTask = ApiHelper.Delete(requestAddress);
     }
   }
 }
