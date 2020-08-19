@@ -48,7 +48,7 @@ namespace MessageBoardClient.Models
     public static void Put(User user)
     {
       string jsonUser = jsonConvert.SerializeObject(user);
-      var apiCallTask = ApiHelper.Put(user.UserId, jsonuser);
+      var apiCallTask = ApiHelper.Put(user.UserId, jsonUser);
     }
 
     public static void Delete(int id)

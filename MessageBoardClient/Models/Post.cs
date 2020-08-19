@@ -40,7 +40,7 @@ namespace MessageBoardClient.Models
 
     public static void Put(Post post)
     {
-      string requestAddress = $"Posts/{post.id}";
+      string requestAddress = $"Posts/{post.PostId}";
       string jsonPost = jsonConvert.SerializeObject(post);
       var apiCallTask = ApiHelper.Put(requestAddress, jsonPost);
     }

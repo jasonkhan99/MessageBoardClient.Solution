@@ -45,7 +45,8 @@ namespace MessageBoardClient.Models
 
     public static void Delete(int id)
     {
-      var apiCallTask = ApiHelper.Delete(id);
+      string requestAddress = $"Thread/{id}";
+      var apiCallTask = ApiHelper.Delete(requestAddress);
     }
 
 //should id be postId
@@ -62,8 +63,9 @@ namespace MessageBoardClient.Models
 
     public static void PostPost(Post post)
     {
+      string requestAddress = $"Threads/{post.ParentThreadId}/posts";
       string jsonPost = jsonConvert.SerializeObject(post);
-      var apiCallTask = ApiHelper.post(post.PostId, jsonPost);
+      var apiCallTask = ApiHelper.post(requestAddress, jsonPost);
     }
   }
 }

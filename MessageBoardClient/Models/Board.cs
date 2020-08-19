@@ -59,6 +59,7 @@ namespace MessageBoardClient.Models
       var apiCallTask = ApiHelper.Delete(requestAddress);
     }
 
+    // Return all Threads associated with a specific Board
     public static List<Thread> GetThreads(int boardId)
     {
       string requestAddress = $"Boards/{boardId}/threads"
