@@ -50,7 +50,7 @@ namespace MessageBoardClient.Models
     {
       string requestAddress = $"Boards/{board.BoardId}";
       string jsonBoard = jsonConvert.SerializeObject(board);
-      var apiCallTask = ApiHelper.Put(requestAddress, jsonboard);
+      var apiCallTask = ApiHelper.Put(requestAddress, jsonBoard);
     }
 
     public static void Delete(int id)
@@ -75,14 +75,14 @@ namespace MessageBoardClient.Models
     {
       string requestAddress = $"Boards/{thread.ParentBoardId}/threads/{thread.ThreadId}";
       string jsonThread = jsonConvert.SerializeObject(thread);
-      var apiCallTask = ApiHelper.Put(requestAddress, jsonthread);
+      var apiCallTask = ApiHelper.Put(requestAddress, jsonThread);
     }
     
     public static void PostThread(Thread thread)
     {
       string requestAddress = $"Boards/{thread.ParentBoardId}/threads";
       string jsonThread = jsonConvert.SerializeObject(thread);
-      var apiCallTask = ApiHelper.Post(requestAddress, jsonthread);
+      var apiCallTask = ApiHelper.Post(requestAddress, jsonThread);
     }
   }
 }

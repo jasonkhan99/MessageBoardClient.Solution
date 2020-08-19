@@ -40,13 +40,15 @@ namespace MessageBoardClient.Models
 
     public static void Put(Post post)
     {
+      string requestAddress = $"Posts/{post.id}";
       string jsonPost = jsonConvert.SerializeObject(post);
-      var apiCallTask = ApiHelper.Put(post.PostId, jsonpost);
+      var apiCallTask = ApiHelper.Put(requestAddress, jsonPost);
     }
 
     public static void Delete(int id)
     {
-      var apiCallTask = ApiHelper.Delete(id);
+      string requestAddress = $"Posts/{id}";
+      var apiCallTask = ApiHelper.Delete(requestAddress);
     }
   }
 }
