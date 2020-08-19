@@ -20,9 +20,10 @@ namespace MessageBoardClient.Models
       this.Posts = new HashSet<Post>();
     }
 
-     public static List<Thread> GetThreads()
+    public static List<Thread> GetThreads()
     {
-      var apiCallTask = apiHelper.GetAll();
+      string requestAddress = "Threads";
+      var apiCallTask = apiHelper.GetAll(requestAddress);
       var result = apiCallTask.Result;
 
       JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
@@ -47,14 +48,15 @@ namespace MessageBoardClient.Models
     }
 
 //should id be postId
-  public static Post GetDetailsPost(int postId)
+  public static List<Post> GetThreadPosts(int threadId)
     {
-      var apiCallTask = ApiHelper.Get(id);
+      string requestAddress = $"Threads{threadId}/posts}";
+      var apiCallTask = ApiHelper.GetAll(requestAddress);
       var result = apiCallTask.Result;
 
       JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-      Post post = JsonConvert.DeserializeObject<Post>(jsonResponse.ToString());
-      return post;
+      List<Post> threadPostList = JsonConvert.DeserializeObject<Post>(jsonResponse.ToString());
+      return threadPostListst;
     }
 
     public static void PostPost(Post post)

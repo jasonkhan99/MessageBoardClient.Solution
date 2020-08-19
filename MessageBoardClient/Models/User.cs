@@ -18,7 +18,8 @@ namespace MessageBoardClient.Models
     }
     public static List<User> GetUsers()
     {
-      var apiCallTask = apiHelper.GetAll();
+      string requestAddress = "Users";
+      var apiCallTask = apiHelper.GetAll(requestAddress);
       var result = apiCallTask.Result;
 
       JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);

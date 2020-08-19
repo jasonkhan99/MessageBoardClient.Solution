@@ -18,7 +18,8 @@ namespace MessageBoardClient.Models
 
     public static List<Board> GetBoards()
     {
-      var apiCallTask = apiHelper.GetAll();
+      string requestAddress = "Boards";
+      var apiCallTask = apiHelper.GetAll(requestAddress);
       var result = apiCallTask.Result;
 
       JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
@@ -57,7 +58,8 @@ namespace MessageBoardClient.Models
     public static List<Thread> GetThreads(int boardId)
     {
       // UPdate this to reference Getting all threads!
-      var apiCallTask = apiHelper.GetAll();
+      string requestAddress = $"Boards/{boardId}/threads"
+      var apiCallTask = apiHelper.GetAll(requestAddress);
       var result = apiCallTask.Result;
 
       JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
