@@ -47,6 +47,7 @@ namespace MessageBoardClient.Models
 
     public static void Put(Board board)
     {
+      string requestAddress = ""
       string jsonBoard = jsonConvert.SerializeObject(board);
       var apiCallTask = ApiHelper.Put(board.BoardId, jsonboard);
     }
@@ -58,7 +59,6 @@ namespace MessageBoardClient.Models
 
     public static List<Thread> GetThreads(int boardId)
     {
-      // UPdate this to reference Getting all threads!
       string requestAddress = $"Boards/{boardId}/threads"
       var apiCallTask = apiHelper.GetAll(requestAddress);
       var result = apiCallTask.Result;

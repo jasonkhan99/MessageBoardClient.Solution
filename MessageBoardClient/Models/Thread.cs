@@ -51,7 +51,7 @@ namespace MessageBoardClient.Models
 //should id be postId
   public static List<Post> GetThreadPosts(int threadId)
     {
-      string requestAddress = $"Threads{threadId}/posts}";
+      string requestAddress = $"Threads{threadId}/posts}"
       var apiCallTask = ApiHelper.GetAll(requestAddress);
       var result = apiCallTask.Result;
 
