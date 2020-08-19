@@ -54,8 +54,8 @@ namespace MessageBoardClient.Models
       var apiCallTask = ApiHelper.GetAll(requestAddress);
       var result = apiCallTask.Result;
 
-      JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-      List<Post> threadPostList = JsonConvert.DeserializeObject<Post>(jsonResponse.ToString());
+      JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
+      List<Post> threadPostList = JsonConvert.DeserializeObject<ist<PPost>>(jsonResponse.ToString());
       return threadPostListst;
     }
 
