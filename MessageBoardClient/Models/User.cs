@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 namespace MessageBoardClient.Models
 {
   public class User
@@ -14,6 +15,43 @@ namespace MessageBoardClient.Models
     {
       this.UserPosts = new HashSet<Post>();
       this.UserThreads = new HashSet<Thread>();
+    }
+    public static List<User> GetUsers()
+    {
+      var apiCallTask = apiHelper.GetAll();
+      var result = apiCallTask.Result;
+
+      JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
+      List<User> userList = JsonConvert.DeserializeObject<List<User>>(jsonResponse.ToString());
+
+      return userList;
+    }
+
+    public static User GetDetails(int id)
+    {
+      var apiCallTask = ApiHelper.Get(id);
+      var result = apiCallTask.Result;
+
+      JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+      User user = JsonConvert.DeserializeObject<User>(jsonResponse.ToString());
+      return user;
+    }
+
+    public static void Post(User user)
+    {
+      string jsonUser = JsonConvert.SerializeObject(user);
+      var apiCallTask = ApiHelper.Post(jsonUser);
+    }
+
+    public static void Put(User user)
+    {
+      string jsonUser = jsonConvert.SerializeObject(user);
+      var apiCallTask = ApiHelper.Put(user.UserId, jsonuser);
+    }
+
+    public static void Delete(int id)
+    {
+      var apiCallTask = ApiHelper.Delete(id);
     }
   }
 }

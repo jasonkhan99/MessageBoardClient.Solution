@@ -1,5 +1,6 @@
 using System;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 namespace MessageBoardClient.Models
 {
     public class ErrorViewModel
