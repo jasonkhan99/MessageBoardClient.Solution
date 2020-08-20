@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+
 namespace MessageBoardClient.Models
 {
   public class User
@@ -19,7 +20,7 @@ namespace MessageBoardClient.Models
     public static List<User> GetUsers()
     {
       string requestAddress = "Users";
-      var apiCallTask = apiHelper.GetAll(requestAddress);
+      var apiCallTask = ApiHelper.GetAll(requestAddress);
       var result = apiCallTask.Result;
 
       JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
@@ -48,8 +49,8 @@ namespace MessageBoardClient.Models
 
     public static void Put(User user)
     {
-      string requestAddress = $"Users/{id}";
-      string jsonUser = jsonConvert.SerializeObject(user);
+      string requestAddress = $"Users/{user.UserId}";
+      string jsonUser = JsonConvert.SerializeObject(user);
       var apiCallTask = ApiHelper.Put(requestAddress, jsonUser);
     }
 

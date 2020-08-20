@@ -1,0 +1,19 @@
+@model MessageBoardClient.Models.Post
+
+<h1>Create a new Post:</h1>
+<hr/>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Title)<br>
+  @Html.TextBoxFor(model => model.Title, new { @class="form-control"})<br>
+
+  @Html.LabelFor(model => model.PostBody)<br>
+  @Html.TextAreaFor(model => model.PostBody, new { @class="form-control"})<br>
+
+  @Html.Hidden("CreationDate", DateTime.Now)<br>
+
+  <button type="submit" class="btn btn-default">Add New Post</button><br>
+}
+
+@Html.ActionLink("Back to Posts", "Index")

@@ -1,0 +1,28 @@
+@model List<MessageBoardClient.Models.Board>
+
+<h1>Boards:</h1>
+<hr/>
+
+@if (@Model.Count == 0)
+{
+  <h5>There are no Boards in the system</h5>
+  <h5>@Html.ActionLink("Would You Like to Add a New Board", "Create")</h5>
+}
+else
+{
+  <table class="table">
+    <tr>
+        <th>
+            Board Name:
+        </th>
+    </tr>
+  @foreach(Board board in @Model)
+  {
+    <tr>
+      <td>
+        @Html.ActionLink($"{board.Title}", "Details", new { id = board.BoardId })
+      </td>
+    </tr>
+  }
+  </table>
+}

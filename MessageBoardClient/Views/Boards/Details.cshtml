@@ -1,0 +1,32 @@
+@model MessageBoardClient.Models.Board
+
+<h1>Board Details</h1>
+<hr/>
+
+<h3>@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)</h3>
+<hr/>
+
+<button class="btn btn-alert">@Html.ActionLink("Delete Board", "Delete", new { id = Model.BoardId })</button>
+<button class ="btn btn-info">@Html.ActionLink("Edit Board", "Edit", new { id = Model.BoardId })</button>
+<button>@Html.ActionLink("Add Thread to Board", "CreateThread", new { id = Model.BoardId })</button>
+
+@if(@Model.Threads.Count == 0)
+{
+  <p>This Board does not have any associated Threads</p>
+  <button>@Html.ActionLink("Add Thread", "CreateThread", new { id = Model.BoardId })</button>
+}
+else
+{
+  <h2>This Boards Threads:</h2>
+  <ul>
+    @foreach(var join in Model.Threads)
+    {
+      <li>@join.Title</li>
+      @using (Html.BeginForm("Delete", "Threads"))
+      {
+        @Html.Hidden("ThreadId", @join.ThreadId)
+        <input type="submit" value="Delete"/>
+      }
+    }
+  </ul>
+}

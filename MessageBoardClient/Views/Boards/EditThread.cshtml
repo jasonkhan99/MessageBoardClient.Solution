@@ -1,0 +1,15 @@
+@model MessageBoardClient.Models.Thread
+
+<h4>Edit this Thread: @Html.DisplayFor(model => model.Title)</h4>
+<hr/>
+
+@using (Html.BeginForm("EditThread", "Boards"))
+{
+  @Html.Hidden("ThreadId", @Model.ThreadId)
+
+  @Html.LabelFor(model => model.Title)<br>
+  @Html.EditorFor(model => model.Title, new { @class="form-control"})<br>
+  <button type="submit" class="btn btn-default">Save Changes</button>
+}
+
+@Html.ActionLink("Back to Details", "Details")
