@@ -19,7 +19,7 @@ namespace MessageBoardClient.Models
     public static List<Board> GetBoards()
     {
       string requestAddress = "Boards";
-      var apiCallTask = apiHelper.GetAll(requestAddress);
+      var apiCallTask = ApiHelper.GetAll(requestAddress);
       var result = apiCallTask.Result;
 
       JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
@@ -49,7 +49,7 @@ namespace MessageBoardClient.Models
     public static void Put(Board board)
     {
       string requestAddress = $"Boards/{board.BoardId}";
-      string jsonBoard = jsonConvert.SerializeObject(board);
+      string jsonBoard = JsonConvert.SerializeObject(board);
       var apiCallTask = ApiHelper.Put(requestAddress, jsonBoard);
     }
 
@@ -62,12 +62,12 @@ namespace MessageBoardClient.Models
     // Return all Threads associated with a specific Board
     public static List<Thread> GetThreads(int boardId)
     {
-      string requestAddress = $"Boards/{boardId}/threads"
-      var apiCallTask = apiHelper.GetAll(requestAddress);
+      string requestAddress = $"Boards/{boardId}/threads";
+      var apiCallTask = ApiHelper.GetAll(requestAddress);
       var result = apiCallTask.Result;
 
       JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
-      List<Threads> threadList = JsonConvert.DeserializeObject<List<Thread>>(jsonResponse.ToString());
+      List<Thread> threadList = JsonConvert.DeserializeObject<List<Thread>>(jsonResponse.ToString());
 
       return threadList;
     }
@@ -75,14 +75,14 @@ namespace MessageBoardClient.Models
     public static void PutThread(Thread thread)
     {
       string requestAddress = $"Boards/{thread.ParentBoardId}/threads/{thread.ThreadId}";
-      string jsonThread = jsonConvert.SerializeObject(thread);
+      string jsonThread = JsonConvert.SerializeObject(thread);
       var apiCallTask = ApiHelper.Put(requestAddress, jsonThread);
     }
     
     public static void PostThread(Thread thread)
     {
       string requestAddress = $"Boards/{thread.ParentBoardId}/threads";
-      string jsonThread = jsonConvert.SerializeObject(thread);
+      string jsonThread = JsonConvert.SerializeObject(thread);
       var apiCallTask = ApiHelper.Post(requestAddress, jsonThread);
     }
   }
