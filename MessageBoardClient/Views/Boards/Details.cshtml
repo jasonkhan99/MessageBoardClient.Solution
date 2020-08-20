@@ -13,7 +13,6 @@
 @if(@Model.Threads.Count == 0)
 {
   <p>This Board does not have any associated Threads</p>
-  <p>Would you like to add a Flavor association?</p>
   <button>@Html.ActionLink("Add Thread", "CreateThread", new { id = Model.BoardId })</button>
 }
 else
@@ -23,7 +22,6 @@ else
     @foreach(var join in Model.Threads)
     {
       <li>@join.Title</li>
-      @*@using (Html.BeginForm("Delete", "Treats", "Threads"))*@
       @using (Html.BeginForm("Delete", "Threads"))
       {
         @Html.Hidden("ThreadId", @join.ThreadId)

@@ -42,35 +42,37 @@ namespace MessageBoardClient.Controllers
     }
 
     [HttpPost]
-    public IActionResult Edit(Board board)
+    public ActionResult Edit(Board board)
     {
       Board.Put(board);
-      return RedirectToAction("Details", board.BoardId);
+      return RedirectToAction("Details", new { id = board.BoardId} );
     }
 
-    public IActionResult Delete (int boardId)
+    public IActionResult Delete (int id)
     {
-      var boardDetails = Board.GetDetails(boardId);
+      var boardDetails = Board.GetDetails(id);
       return View(boardDetails);
     }
 
     [HttpPost, ActionName("Delete")]
-    public IActionResult DeleteConfirm (int boardId)
+    public IActionResult DeleteConfirm (int id)
     {
-      Board.Delete(boardId);
+      Board.Delete(id);
       return RedirectToAction("Index");
     }
 
-    public IActionResult CreateThread (int parentBoardId)
+    public IActionResult CreateThread (int id)
     {
-      return View(parentBoardId);
+      var thread = new Thread();
+      thread.ParentBoardId = id;
+      return View(thread);
     }
 
     [HttpPost]
     public IActionResult CreateThread(Thread thread)
     {
       Board.PostThread(thread);
-      return RedirectToAction("Details", thread.ParentBoardId);
+      return RedirectToAction("Details", new { id = thread.ParentBoardId});
     }
 
     public IActionResult EditThread(int threadId)
@@ -83,7 +85,7 @@ namespace MessageBoardClient.Controllers
     public IActionResult EditThread(Thread thread)
     {
       Board.PutThread(thread);
-      return RedirectToAction("Details", "Threads", thread.ThreadId);
+      return RedirectToAction("Details", "Threads", new { id = thread.ParentBoardId});
     }
   }
 }

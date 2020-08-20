@@ -1,20 +1,19 @@
-@model int
+@using System;
+@model MessageBoardClient.Models.Thread
 
-<h1>Create a new Thread:</h1>
+<h1>Create a new-ish Thread:</h1>
 <hr/>
 
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(ParentBoardId)
-  @Html.TextBoxFor(@Model, new { @type = "number"})
+  @Html.Hidden("ParentBoardId", @Model.ParentBoardId)
 
-  @Html.LabelFor(model => model.Title)<br>
-  @Html.TextBoxFor(model => model.Title, new { @class="form-control"})<br>
+  @Html.Label("Thread Title")<br>
+  @Html.TextBoxFor(model => model.Title)<br>
 
-  @Html.LabelFor(model => model.CreationDate)<br>
-  @Html.TextBoxFor(model => model.CreationDate, new { @class="form-control"})
+  @Html.Hidden("CreationDate", DateTime.Now)<br>
 
   <button type="submit" class="btn btn-default">Add New Thread</button><br>
 }
 
-@Html.ActionLink("Back to Details", "Details")
+@Html.ActionLink("Back to Details", "Details", {id = @Model.ParentBoardId})

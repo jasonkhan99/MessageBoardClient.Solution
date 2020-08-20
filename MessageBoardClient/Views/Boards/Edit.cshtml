@@ -5,6 +5,7 @@
 
 @using (Html.BeginForm())
 {
+  @Html.Hidden("BoardId", @Model.BoardId)
   @Html.LabelFor(model => model.Title)<br>
   @Html.EditorFor(model => model.Title, new { @class="form-control"})<br>
   
