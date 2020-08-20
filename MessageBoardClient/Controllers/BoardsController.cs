@@ -54,8 +54,8 @@ namespace MessageBoardClient.Controllers
       return View(boardDetails);
     }
 
-    [HttpPost]
-    public IActionResult Delete (int boardId)
+    [HttpPost, ActionName("Delete")]
+    public IActionResult DeleteConfirm (int boardId)
     {
       Board.Delete(boardId);
       return RedirectToAction("Index");
