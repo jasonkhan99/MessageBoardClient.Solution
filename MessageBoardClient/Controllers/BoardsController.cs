@@ -60,5 +60,30 @@ namespace MessageBoardClient.Controllers
       Board.Delete(boardId);
       return RedirectToAction("Index");
     }
+
+    public IActionResult CreateThread (int parentBoardId)
+    {
+      return View(parentBoardId);
+    }
+
+    [HttpPost]
+    public IActionResult CreateThread(Thread thread)
+    {
+      Board.PostThread(thread);
+      return RedirectToAction("Details", thread.ParentBoardId);
+    }
+
+    public IActionResult EditThread(int threadId)
+    {
+      var threadChange = Thread.GetDetails(threadId);
+      return View(threadChange);
+    }
+
+    [HttpPost]
+    public IActionResult EditThread(Thread thread)
+    {
+      Board.PutThread(thread);
+      return RedirectToAction("Details", "Threads", thread.ThreadId);
+    }
   }
 }
