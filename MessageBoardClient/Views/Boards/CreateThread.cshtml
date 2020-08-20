@@ -4,11 +4,12 @@
 <h1>Create a new-ish Thread:</h1>
 <hr/>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("CreateThread", "Boards"))
 {
   @Html.Hidden("ParentBoardId", @Model.ParentBoardId)
+  @Html.Hidden("UserId", 1)
 
-  @Html.Label("Thread Title")<br>
+  @Html.LabelFor(model => model.Title)<br>
   @Html.TextBoxFor(model => model.Title)<br>
 
   @Html.Hidden("CreationDate", DateTime.Now)<br>
@@ -16,4 +17,4 @@
   <button type="submit" class="btn btn-default">Add New Thread</button><br>
 }
 
-@Html.ActionLink("Back to Details", "Details", {id = @Model.ParentBoardId})
+@Html.ActionLink("Back to Details", "Details", new {id = @Model.ParentBoardId})

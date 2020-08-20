@@ -81,8 +81,9 @@ namespace MessageBoardClient.Models
     
     public static void PostThread(Thread thread)
     {
-      string requestAddress = $"Boards/{thread.ParentBoardId}/threads";
+      string requestAddress = $"Boards/{thread.ParentBoardId}/Threads";
       string jsonThread = JsonConvert.SerializeObject(thread);
+      Console.WriteLine("\n JSON THREAD:\n" + jsonThread);
       var apiCallTask = ApiHelper.Post(requestAddress, jsonThread);
     }
   }

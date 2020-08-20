@@ -71,6 +71,7 @@ namespace MessageBoardClient.Controllers
     [HttpPost]
     public IActionResult CreateThread(Thread thread)
     {
+      Console.WriteLine("\n" + thread.Title + "\n" + thread.ParentBoardId);
       Board.PostThread(thread);
       return RedirectToAction("Details", new { id = thread.ParentBoardId});
     }

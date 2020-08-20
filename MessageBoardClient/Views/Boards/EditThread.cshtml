@@ -3,7 +3,7 @@
 <h4>Edit this Thread: @Html.DisplayFor(model => model.Title)</h4>
 <hr/>
 
-@using (Html.BeginForm("EditThread"))
+@using (Html.BeginForm("EditThread", "Boards"))
 {
   @Html.Hidden("ThreadId", @Model.ThreadId)
 
