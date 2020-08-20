@@ -1,0 +1,14 @@
+@model MessageBoardClient.Models.Board
+
+<h1>Create a new Board:</h1>
+<hr/>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Title)<br>
+  @Html.TextBoxFor(model => model.Title, new { @class="form-control"})<br>
+
+  <button type="submit" class="btn btn-default">Add New Board</button><br>
+}
+
+@Html.ActionLink("Back to Boards", "Index")
